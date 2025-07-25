@@ -9,9 +9,9 @@ export class DepartmentController {
 
     @Post()
     async createDeparment(@Body() departmentDto: CreateDepartmentDto): Promise<void> {
+        const department = Department.fromPrimitives(departmentDto);
+        await this.departmentService.departmentCreator(department);
         try {
-            const department = Department.fromPrimitives(departmentDto);
-            await this.departmentService.departmentCreator(department);
         } catch (error) {
             // throw new HttpException('Error primero',HttpStatus.BAD_REQUEST);
             // throw new HttpException({message:error,status:4002, other:"other"}, HttpStatus.BAD_REQUEST);
