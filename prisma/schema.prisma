@@ -7,6 +7,29 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model users {
+  id              Int          @id @default(autoincrement())
+  name            String
+  lastname        String
+  profile_picture String?
+  username        String       @unique
+  email           String       @unique
+  password_hash   String
+  user_type       String // Enum: 'internal', 'external'
+  is_active       Boolean      @default(true)
+  created_at      DateTime     @default(now())
+  updated_at      DateTime     @updatedAt
+  department      departments? @relation(fields: [department_id], references: [id])
+  department_id   Int?
+  // TODO: complete model users
+  // institutional_position_id
+  // created_by
+  // updated_by
+  // last_login_at
+  // failed_login_attempts
+  // password_updated_at
+}
+
 model departments {
   id         Int      @id @default(autoincrement())
   name       String   @unique
@@ -14,6 +37,7 @@ model departments {
   is_active  Boolean  @default(true)
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
+  users      users[]
   // TODO: relation with user
   // created_by Int
   // updated_by Int
