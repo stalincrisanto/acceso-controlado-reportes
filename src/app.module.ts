@@ -2,6 +2,7 @@ import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { PrismaModule } from "./infraestructure/shared/prisma/prisma.module";
 import { DepartmentModule } from "./interfaces/modules/DepartmentModule";
+import { InstitutionalPositionModule } from "./interfaces/modules/InstitutionalPositionModule";
 
 @Module({
   imports: [
@@ -10,7 +11,8 @@ import { DepartmentModule } from "./interfaces/modules/DepartmentModule";
       envFilePath: '.env',
     }),
     PrismaModule,
-    DepartmentModule
+    DepartmentModule,
+    InstitutionalPositionModule
   ],
 })
 export class AppModule {}

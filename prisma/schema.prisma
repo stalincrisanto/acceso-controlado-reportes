@@ -8,19 +8,21 @@ datasource db {
 }
 
 model users {
-  id              Int          @id @default(autoincrement())
-  name            String
-  lastname        String
-  profile_picture String?
-  username        String       @unique
-  email           String       @unique
-  password_hash   String
-  user_type       String // Enum: 'internal', 'external'
-  is_active       Boolean      @default(true)
-  created_at      DateTime     @default(now())
-  updated_at      DateTime     @updatedAt
-  department      departments? @relation(fields: [department_id], references: [id])
-  department_id   Int?
+  id                              Int                      @id @default(autoincrement())
+  name                            String
+  lastname                        String
+  profile_picture                 String?
+  username                        String                   @unique
+  email                           String                   @unique
+  password_hash                   String
+  user_type                       String // Enum: 'internal', 'external'
+  is_active                       Boolean                  @default(true)
+  created_at                      DateTime                 @default(now())
+  updated_at                      DateTime                 @updatedAt
+  department_relation             departments?             @relation(fields: [department_id], references: [id])
+  department_id                   Int?
+  institutional_position_relation institutional_positions? @relation(fields: [institutional_position_id], references: [id])
+  institutional_position_id       Int?
   // TODO: complete model users
   // institutional_position_id
   // created_by
@@ -34,6 +36,19 @@ model departments {
   id         Int      @id @default(autoincrement())
   name       String   @unique
   code       String   @unique
+  is_active  Boolean  @default(true)
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  users      users[]
+  // TODO: relation with user
+  // created_by Int
+  // updated_by Int
+}
+
+model institutional_positions {
+  id         Int      @id @default(autoincrement())
+  name       String   @unique
+  code       String?
   is_active  Boolean  @default(true)
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
