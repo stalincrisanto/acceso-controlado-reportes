@@ -23,7 +23,7 @@ export class CreateUserDto {
   public readonly lastname!: string;
 
   @IsString()
-  public readonly profile_picture: string;
+  public readonly profilePicture: string;
 
   @IsString()
   @Transform(({ value }) => value.trim())
@@ -41,18 +41,18 @@ export class CreateUserDto {
   @Length(8, 20, {
     message: 'La contraseña debe tener entre 8 y 20 caracteres',
   })
-  public readonly password_hash!: string;
+  public readonly passwordHash!: string;
 
   @IsEnum(
     { interno: 'internal', externo: 'external' },
     { message: 'El tipo de usuario debe ser internal o external' },
   )
   @IsDefined({ message: 'El valor del tipo de usuario es obligatorio' })
-  public readonly user_type!: string;
+  public readonly userType!: string;
 
   @IsInt({ message: 'El ID del departamento debe ser un número entero' })
-  public readonly department_id?: number;
+  public readonly departmentId?: number;
 
-//   @IsInt({ message: 'El ID del cargo debe ser un número entero' })
-//   public readonly institutional_position_id?: number;
+  @IsInt({ message: 'El ID del cargo debe ser un número entero' })
+  public readonly institutionalPositionId?: number;
 }

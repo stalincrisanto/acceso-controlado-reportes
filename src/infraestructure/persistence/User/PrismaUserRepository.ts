@@ -15,11 +15,12 @@ export class PrismaUserRepository implements UserRepository {
   }
 
   async findByUsername(username: string): Promise<User | null> {
-    const user = await this.prisma.users.findFirst({
-      where: { username },
-    });
-    return user
-      ? User.fromPrimitives({ ...user, user_type: user.user_type as UserType })
-      : null;
+    // const user = await this.prisma.users.findFirst({
+    //   where: { username },
+    // });
+    // return user
+    //   ? User.fromPrimitives({ ...user, user_type: user.user_type as UserType })
+    //   : null;
+    return null;
   }
 }

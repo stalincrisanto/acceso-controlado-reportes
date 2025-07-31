@@ -4,24 +4,26 @@ export class User {
   constructor(
     public readonly name: string,
     public readonly lastname: string,
-    public readonly profile_picture: string | null,
+    public readonly profilePicture: string | null,
     public readonly username: string,
     public readonly email: string,
-    public readonly password_hash: string,
-    public readonly user_type: UserType,
-    public readonly department_id: number | null,
+    public readonly passwordHash: string,
+    public readonly userType: UserType,
+    public readonly departmentId: number | null,
+    public readonly institutionalPositionId: number | null
   ) {}
 
   static fromPrimitives(primitives: Primitives<User>): User {
     return new User(
       primitives.name,
       primitives.lastname,
-      primitives.profile_picture,
+      primitives.profilePicture,
       primitives.username,
       primitives.email,
-      primitives.password_hash,
-      primitives.user_type,
-      primitives.department_id,
+      primitives.passwordHash,
+      primitives.userType,
+      primitives.departmentId || null,
+      primitives.institutionalPositionId || null
     );
   }
 
@@ -29,12 +31,13 @@ export class User {
     return {
       name: this.name,
       lastname: this.lastname,
-      profile_picture: this.profile_picture,
+      profilePicture: this.profilePicture,
       username: this.username,
       email: this.email,
-      password_hash: this.password_hash,
-      user_type: this.user_type,
-      department_id: this.department_id,
+      passwordHash: this.passwordHash,
+      userType: this.userType,
+      departmentId: this.departmentId || null,
+      institutionalPositionId: this.institutionalPositionId || null
     };
   }
 }
