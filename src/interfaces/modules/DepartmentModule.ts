@@ -3,14 +3,14 @@ import { DepartmentController } from "../controllers/Department/DepartmentContro
 import { DepartmentService } from "src/application/Department/DepartmentService";
 import { PrismaDepartmentRepository } from "src/infraestructure/persistence/Department/PrismaDepartmentRepository";
 import { PrismaService } from "src/infraestructure/shared/prisma/prisma.service";
-import { DEPARTMENT_TOKEN } from "src/domain/Department/DepartmentTokens";
+import { DEPARTMENT_REPOSITORY_TOKEN } from "src/domain/shared/TokensForInyection";
 
 @Module({
     controllers: [DepartmentController],
     providers: [
         DepartmentService,
         {
-            provide: DEPARTMENT_TOKEN,
+            provide: DEPARTMENT_REPOSITORY_TOKEN,
             useClass: PrismaDepartmentRepository
         },
         PrismaService

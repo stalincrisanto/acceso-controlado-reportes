@@ -1,12 +1,12 @@
 import { Inject, Injectable } from "@nestjs/common";
 import { Department } from "src/domain/Department/Department";
 import { DepartmentRepository } from "src/domain/Department/DepartmentRepository";
-import { DEPARTMENT_TOKEN } from "src/domain/Department/DepartmentTokens";
+import { DEPARTMENT_REPOSITORY_TOKEN } from "src/domain/shared/TokensForInyection";
 
 @Injectable()
 export class DepartmentService {
     constructor(
-        @Inject(DEPARTMENT_TOKEN)
+        @Inject(DEPARTMENT_REPOSITORY_TOKEN)
         private readonly departmentRepository: DepartmentRepository) { }
 
     async departmentCreator(department: Department) {
